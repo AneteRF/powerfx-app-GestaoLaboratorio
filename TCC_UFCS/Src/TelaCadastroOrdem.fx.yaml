@@ -1,0 +1,823 @@
+TelaCadastroOrdem As screen:
+    BackgroundImage: ='3'
+    ImagePosition: =ImagePosition.Stretch
+    OnVisible: |-
+        =
+        UpdateContext({locOrdem: true});
+        NewForm(Form1)
+
+    lblTituloCadastroEnsaios As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =30
+        Text: ="CADASTRO DE ENSAIOS DA ORDEM"
+        Visible: =!locOrdem
+        Width: =723
+        X: =276
+        Y: =58
+        ZIndex: =10
+
+    Form1 As form:
+        DataSource: =TbOrdens
+        Height: =449
+        NumberOfColumns: =2
+        Visible: =locOrdem
+        Width: =1162
+        X: =90
+        Y: =194
+        ZIndex: =75
+
+        "'ID Empresa_DataCard1' As typedDataCard.comboBoxEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="IDEmpresa"
+            Default: =ThisItem.'ID Empresa'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@TbOrdens],DataSourceInfo.DisplayName,"IDEmpresa")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =132
+            Required: =false
+            Update: =DataCardValue1.Selected
+            Width: =581
+            X: =1
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey1 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue1 As combobox:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                Items: =Choices([@TbOrdens].'ID Empresa')
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SearchItems: =Choices(TbOrdens.'ID Empresa',DataCardValue1.SearchText)
+                SelectMultiple: =false
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey1.Y + DataCardKey1.Height + 5
+                ZIndex: =2
+
+            ErrorMessage1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue1.Y + DataCardValue1.Height
+                ZIndex: =3
+
+            StarVisible1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey1.Y
+                ZIndex: =4
+
+        Date_DataCard1 As typedDataCard.dateEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Date"
+            Default: =ThisItem.Date
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@TbOrdens],DataSourceInfo.DisplayName,"Date")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =151
+            Required: =false
+            Update: =DataCardValue11.SelectedDate
+            Width: =581
+            X: =0
+            Y: =0
+            ZIndex: =76
+
+            DataCardKey12 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue11 As datepicker:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultDate: =Parent.Default
+                DisplayMode: =Parent.DisplayMode
+                EndYear: =Year(Today())+100
+                IsEditable: =true
+                PaddingBottom: =0
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                StartYear: =1899
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey12.Y + DataCardKey12.Height + 5
+                ZIndex: =2
+
+            ErrorMessage12 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue11.Y + DataCardValue11.Height
+                ZIndex: =3
+
+            StarVisible12 As label:
+                Align: =Align.Center
+                Height: =DataCardKey12.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey12.Y
+                ZIndex: =4
+
+        ImagemSolo_DataCard1 As typedDataCard.addLargePictureCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="ImagemSolo"
+            Default: =ThisItem.ImagemSolo
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@TbOrdens],DataSourceInfo.DisplayName,"ImagemSolo")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =Image4.Image
+            Width: =581
+            X: =0
+            Y: =1
+            ZIndex: =76
+
+            DataCardKey14 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            Image4 As image:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DisplayMode: =Parent.DisplayMode
+                Height: =AddPicture2.Height
+                Image: =If(IsBlank(AddPicture2.Media), Parent.Default, AddPicture2.Media)
+                Tooltip: =Parent.DisplayName
+                Width: =AddPicture2.Width
+                X: =AddPicture2.X
+                Y: =AddPicture2.Y
+                ZIndex: =2
+
+            AddPicture2 As addMedia:
+                Height: =200
+                Width: =Parent.Width - 60
+                X: =24
+                Y: =60
+                ZIndex: =3
+
+            ErrorMessage14 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =Image4.Y + Image4.Height
+                ZIndex: =4
+
+            StarVisible14 As label:
+                Align: =Align.Center
+                Height: =DataCardKey14.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey14.Y
+                ZIndex: =5
+
+        Descricao_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Descricao"
+            Default: =ThisItem.Descricao
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@TbOrdens],DataSourceInfo.DisplayName,"Descricao")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@TbOrdens], DataSourceInfo.MaxLength, "Descricao")
+            Required: =false
+            Update: =DataCardValue13.Text
+            Width: =581
+            X: =1
+            Y: =1
+            ZIndex: =76
+
+            DataCardKey15 As label:
+                AutoHeight: =true
+                Height: =34
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue13 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: =Parent.Default
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =119
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey15.Y + DataCardKey15.Height + 5
+                ZIndex: =2
+
+            ErrorMessage15 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue13.Y + DataCardValue13.Height
+                ZIndex: =3
+
+            StarVisible15 As label:
+                Align: =Align.Center
+                Height: =DataCardKey15.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey15.Y
+                ZIndex: =4
+
+    Button3_1 As button:
+        AutoDisableOnSelect: =false
+        BorderThickness: =0
+        Color: =RGBA(254, 226, 28, 1)
+        Height: =82
+        OnSelect: |-
+            =/*UpdateContext({Test:LookUp(TbEmpresa; Nome=drpCliente.Selected.Nome)});;
+            Patch(TbOrdens;
+            Defaults(TbOrdens);
+            {Date: tblData.SelectedDate;
+            'ID Empresa': Test })*/
+            SubmitForm(Form1);
+            Patch(
+                TbOrdens,
+                Form1.LastSubmit,
+                {
+                    Latitude: txtLoc.SelectedLatitude,
+                    Longitude: txtLoc.SelectedLongitude,
+                    Endereço: txtLoc.FreeformAddress
+                }
+            );
+            Set(
+                lastOrderIDVar,
+                First(
+                    SortByColumns(
+                        TbOrdens,
+                        "ID",
+                        SortOrder.Descending
+                    )
+                )
+            );
+            UpdateContext({locOrdem: false})
+        Text: |-
+            ="Salvar Ordem
+            Add Ensaio"
+        Visible: =locOrdem
+        Width: =171
+        X: =1154
+        Y: =649
+        ZIndex: =78
+
+    Container1 As groupContainer.manualLayoutContainer:
+        Height: =581
+        Visible: =!locOrdem
+        Width: =1320
+        X: =21
+        Y: =167
+        ZIndex: =79
+
+        Rectangle1 As rectangle:
+            Fill: =RGBA(8, 98, 172, 1)
+            Height: =58
+            Width: =1320
+            ZIndex: =1
+
+        "Gallery3 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            DelayItemLoading: =true
+            Height: =456
+            Items: |
+                =TbEnsaios
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =79
+            Width: =1285
+            X: =15
+            Y: =54
+            ZIndex: =2
+
+            Image2 As image:
+                Height: =52
+                Image: =ThisItem.Imagem
+                OnSelect: =Select(Parent)
+                Width: =58
+                X: =19
+                Y: =10
+                ZIndex: =1
+
+            Title1 As label:
+                Height: =66
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.Nome
+                VerticalAlign: =VerticalAlign.Top
+                Width: =626
+                X: =99
+                Y: =7
+                ZIndex: =2
+
+            NextArrow1 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Color: |-
+                    =If(
+                        IsBlank(txtQtd),
+                        RGBA(
+                            255,
+                            18,
+                            107,
+                            1
+                        ),
+                        RGBA(
+                            0,
+                            128,
+                            107,
+                            1
+                        )
+                    )
+                DisplayMode: |-
+                    =If(
+                        IsBlank(txtQtd),
+                        DisplayMode.View,
+                        DisplayMode.Edit
+                    )
+                Height: =60
+                Icon: =Icon.Add
+                OnSelect: |-
+                    =/*If( //condição se o item existe dentro da coleção
+                        !IsBlank(
+                            LookUp(
+                                colEnsaios;
+                                'ID Ensaio' = ThisItem.ID
+                            )
+                        ); //notificação para não cadastrar de novo
+                        Notify("Item já foi adicionado";NotificationType.Information);
+                        //senão add na coleção*/
+                    Patch(
+                        TbEnsaiosDaOrdem,
+                        Defaults(TbEnsaiosDaOrdem),
+                        {
+                            Qtd: Value(txtQtd.Text),
+                            'ID Ensaio': ThisItem.ID,
+                            'ID Ordem': lastOrderIDVar.ID,
+                            'Data Conclusão': tblData.SelectedDate
+                        }
+                    );
+                    UpdateContext({LocEditOrdem: false})
+                PaddingBottom: =10
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                TabIndex: =0
+                Tooltip: ="Exibir detalhes do item"
+                Visible: |-
+                    =If(
+                        !IsBlank(
+                            LookUp(TbEnsaiosDaOrdem,
+                            'ID Ordem'=lastOrderIDVar.ID And 'ID Ensaio'= ThisItem.ID)
+                        ), false, true)
+                Width: =60
+                X: =1196
+                Y: =6
+                ZIndex: =4
+
+            Separator1 As rectangle:
+                Height: =0
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =5
+
+            txtQtd As text:
+                Default: =
+                Format: =TextFormat.Number
+                Height: =45
+                OnSelect: =Select(Parent)
+                Width: =105
+                X: =739
+                Y: =6
+                ZIndex: =6
+
+            tblData As datepicker:
+                Height: =45
+                OnSelect: =Select(Parent)
+                Width: =173
+                X: =903
+                Y: =6
+                ZIndex: =7
+
+            Title1_1 As label:
+                Height: =26
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =
+                VerticalAlign: =VerticalAlign.Top
+                Width: =70
+                X: =610
+                Y: =133
+                ZIndex: =8
+
+            icoEdit As icon.Edit:
+                Height: =60
+                Icon: =Icon.Edit
+                OnSelect: |-
+                    =Patch(
+                        TbEnsaiosDaOrdem,
+                        LookUp(
+                            TbEnsaiosDaOrdem,
+                            'ID Ensaio' = ThisItem.ID && 'ID Ordem' = lastOrderIDVar.ID
+                        ),
+                        {
+                            Qtd: Value(txtQtd.Text),
+                            'ID Ensaio': ThisItem.ID,
+                            'ID Ordem': lastOrderIDVar.ID,
+                            'Data Conclusão': tblData.SelectedDate
+                        }
+                    )
+                Visible: |-
+                    =If(
+                        !IsBlank(
+                            LookUp(TbEnsaiosDaOrdem,
+                            'ID Ordem'=lastOrderIDVar.ID And 'ID Ensaio'= ThisItem.ID)
+                        ), true, false)
+                Width: =53
+                X: =1127
+                Y: =6
+                ZIndex: =9
+
+        Subtitle1_4 As label:
+            Color: =RGBA(254, 226, 28, 1)
+            Height: =30
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                ="Add Ensaios na Ordem:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =296
+            X: =15
+            Y: =18
+            ZIndex: =3
+
+        Subtitle1_5 As label:
+            Color: =RGBA(254, 226, 28, 1)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                ="Quantidade:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =151
+            X: =747
+            Y: =14
+            ZIndex: =4
+
+        Subtitle1_6 As label:
+            Color: =RGBA(254, 226, 28, 1)
+            Height: =30
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                ="Data Conclusão:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =189
+            X: =919
+            Y: =14
+            ZIndex: =5
+
+        Button3_2 As button:
+            Height: =58
+            OnSelect: |
+                =Navigate(TelaMenu)
+            Text: ="Voltar"
+            X: =870
+            Y: =584
+            ZIndex: =6
+
+        Button3 As button:
+            Height: =58
+            OnSelect: |-
+                =/*UpdateContext({Test:LookUp(TbEmpresa; Nome=drpCliente.Selected.Nome)});;
+                Patch(TbOrdens;
+                Defaults(TbOrdens);
+                {Date: tblData.SelectedDate;
+                'ID Empresa': Test })*/
+                /*NewForm(Form1);;
+                Clear(colEnsaios)*/
+                NewForm(Form1);
+                UpdateContext({locOrdem: true})
+            Text: |-
+                ="Criar nova
+                Ordem"
+            Width: =195
+            X: =1070
+            Y: =584
+            ZIndex: =7
+
+        Button3_3 As button:
+            Height: =58
+            OnSelect: |
+                =Navigate(TelaMenu)
+            Text: ="Editar Ordem"
+            X: =673
+            Y: =584
+            ZIndex: =8
+
+        Subtitle1_7 As label:
+            Color: =RGBA(254, 226, 28, 1)
+            Height: =28
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =lastOrderIDVar.ID
+            VerticalAlign: =VerticalAlign.Top
+            Width: =54
+            X: =299
+            Y: =15
+            ZIndex: =9
+
+        Subtitle1_8 As label:
+            Color: =RGBA(254, 226, 28, 1)
+            Height: =28
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =lastOrderIDVar.'ID Empresa'.Value
+            VerticalAlign: =VerticalAlign.Top
+            Width: =160
+            X: =353
+            Y: =15
+            ZIndex: =10
+
+        Button1 As button:
+            Height: =57
+            OnSelect: =Navigate(TelaMenu)
+            Text: =""
+            X: =1125
+            Y: =517
+            ZIndex: =11
+
+        Label4 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 0, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =57
+            OnSelect: =Navigate(TelaMenu)
+            Size: =15
+            Text: ="Voltar"
+            Width: =85
+            X: =1199
+            Y: =517
+            ZIndex: =12
+
+        Icon2 As icon.BackArrow:
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =57
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate(TelaMenu)
+            Width: =48
+            X: =1135
+            Y: =517
+            ZIndex: =13
+
+        Rectangle4 As rectangle:
+            Fill: =RGBA(0, 167, 88, 1)
+            Height: =57
+            Width: =2
+            X: =1197
+            Y: =517
+            ZIndex: =14
+
+        Button2 As button:
+            Color: =RGBA(255, 255, 0, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =57
+            OnSelect: =Navigate(TelaPDFOrdemServiço)
+            Text: ="Imprimir"
+            Width: =215
+            X: =893
+            Y: =517
+            ZIndex: =15
+
+        Rectangle3 As rectangle:
+            Fill: =RGBA(0, 167, 88, 1)
+            Height: =57
+            Width: =1
+            X: =954
+            Y: =517
+            ZIndex: =16
+
+        Icon4 As icon.Print:
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =57
+            Icon: =Icon.Print
+            Width: =54
+            X: =893
+            Y: =517
+            ZIndex: =17
+
+    "txtLoc As 'Entrada de endereço'":
+        BorderColor: =RGBA(0, 18, 107, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFillColor: =RGBA(244, 244, 244, 1)
+        DisabledFontColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.Edit
+        FillColor: =RGBA(255, 255, 255, 1)
+        Height: =65
+        HoverBorderColor: =RGBA(0, 18, 107, 1)
+        HoverFillColor: =RGBA(186, 202, 226, 1)
+        HoverFontColor: =RGBA(0, 0, 0, 1)
+        PressedBorderColor: =RGBA(0, 18, 107, 1)
+        PressedFillColor: =RGBA(255, 255, 255, 1)
+        PressedFontColor: =RGBA(0, 0, 0, 1)
+        TextColor: =RGBA(0, 0, 0, 1)
+        Visible: =locOrdem
+        Width: =523
+        X: =700
+        Y: =564
+        ZIndex: =87
+
+    Button3_4 As button:
+        BorderThickness: =0
+        Height: =82
+        OnSelect: |-
+            =/*UpdateContext({Test:LookUp(TbEmpresa; Nome=drpCliente.Selected.Nome)});;
+            Patch(TbOrdens;
+            Defaults(TbOrdens);
+            {Date: tblData.SelectedDate;
+            'ID Empresa': Test })*/
+            SubmitForm(Form1);
+            Patch(
+                TbOrdens,
+                Form1.LastSubmit,
+                {
+                    Latitude: txtLoc.SelectedLatitude,
+                    Longitude: txtLoc.SelectedLongitude,
+                    Endereço: txtLoc.FreeformAddress
+                }
+            );
+            Set(
+                lastOrderIDVar,
+                First(
+                    SortByColumns(
+                        TbOrdens,
+                        "ID",
+                        SortOrder.Descending
+                    )
+                )
+            );
+            UpdateContext({locOrdem: false})
+        Text: =""
+        Visible: =locOrdem
+        Width: =90
+        X: =1080
+        Y: =649
+        ZIndex: =88
+
+    Image3 As image:
+        Height: =76
+        Image: ='botao-salvar'
+        Visible: =locOrdem
+        Width: =78
+        X: =1086
+        Y: =649
+        ZIndex: =89
+
+    lblCadastroNovasEmpresasAlunos_1 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =62
+        Size: =20
+        Text: ="CADASTRO ORDEM DE SERVIÇO"
+        Visible: =locOrdem
+        Width: =950
+        X: =231
+        Y: =58
+        ZIndex: =90
+
+    Label7 As label:
+        Text: ="Endereço"
+        Visible: =locOrdem
+        X: =700
+        Y: =524
+        ZIndex: =91
+
+    shp6_1 As rectangle:
+        Fill: =RGBA(0, 167, 88, 1)
+        Height: =82
+        Visible: =locOrdem
+        Width: =2
+        X: =1164
+        Y: =649
+        ZIndex: =92
+
+    Rectangle12 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        OnSelect: |-
+            =SubmitForm(Form1);
+            Patch(
+                TbOrdens,
+                Form1.LastSubmit,
+                {
+                    Latitude: txtLoc.SelectedLatitude,
+                    Longitude: txtLoc.SelectedLongitude,
+                    Endereço: txtLoc.FreeformAddress
+                }
+            );
+            Set(
+                lastOrderIDVar,
+                First(
+                    SortByColumns(
+                        TbOrdens,
+                        "ID",
+                        SortOrder.Descending
+                    )
+                )
+            );
+            UpdateContext({locOrdem: false})
+        Visible: =locOrdem
+        Width: =268
+        X: =1057
+        Y: =637
+        ZIndex: =93
+

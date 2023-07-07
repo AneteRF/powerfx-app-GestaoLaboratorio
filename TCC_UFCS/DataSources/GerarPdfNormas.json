@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "dc786a2c-1ed8-4d39-8906-e8c1c801e74a",
+    "Name": "GerarPdfNormas",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "1be52512-d7fd-ed11-8f6d-0022483600c3"
+  }
+]

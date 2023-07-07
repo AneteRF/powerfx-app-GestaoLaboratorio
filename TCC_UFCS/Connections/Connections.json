@@ -1,0 +1,163 @@
+{
+  "0cf08e9c-a6e0-4bc5-a2ff-e7cd46c77a7f": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Fluxos lógicos",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1636/1.0.1636.3297/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "e6845def-31c5-48b0-9f0e-bea0635c5870": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowEntityId": {
+          "value": "1be52512-d7fd-ed11-8f6d-0022483600c3"
+        },
+        "workflowName": {
+          "value": "86a3b9fc-c742-5306-a5e6-d3ab3f2c8a80"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "e6845def-31c5-48b0-9f0e-bea0635c5870"
+        },
+        "workflowEntityId": {
+          "value": "1be52512-d7fd-ed11-8f6d-0022483600c3"
+        },
+        "workflowName": {
+          "value": "86a3b9fc-c742-5306-a5e6-d3ab3f2c8a80"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "GerarPdfNormas"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "e6845def-31c5-48b0-9f0e-bea0635c5870"
+    },
+    "dependents": [],
+    "id": "0cf08e9c-a6e0-4bc5-a2ff-e7cd46c77a7f"
+  },
+  "71c988fa-9a30-49ac-871a-a799d9bd7777": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3310/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Outlook"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "71c988fa-9a30-49ac-871a-a799d9bd7777"
+  },
+  "b475ba6c-8842-4c0e-86fe-760eb7eeec5f": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3310/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://rbadigital.sharepoint.com/sites/AneteRF": {
+        "dataSources": {
+          "Documents": {
+            "tableName": "dc2e6ab6-0c70-4083-8df7-76b473905a55"
+          },
+          "Normas": {
+            "tableName": "91557f3a-7d9a-4705-a997-2b010119f6ee"
+          },
+          "TabOpcao": {
+            "tableName": "df9b8521-3edf-47de-9c8f-159f3468f3ef"
+          },
+          "TbEmpresa": {
+            "tableName": "86b2ddfd-4bd4-4e84-b860-0a3957b188ba"
+          },
+          "TbEnsaiosDaOrdem": {
+            "tableName": "b4b585f6-6dd7-4456-826a-2fb451de19d4"
+          },
+          "TbNormas": {
+            "tableName": "66f30a94-4538-428a-af9c-d98c433f8b9d"
+          },
+          "TbOrdens": {
+            "tableName": "93ef8233-ece5-4bae-9fcb-e93704d17d5c"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "TabOpcao",
+      "TbEmpresa",
+      "TbEnsaiosDaOrdem",
+      "TbOrdens",
+      "Documents",
+      "Normas",
+      "TbNormas"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "b475ba6c-8842-4c0e-86fe-760eb7eeec5f"
+  },
+  "bdbe2a93-43ab-4773-b766-5977d73318e8": {
+    "connectionRef": {
+      "displayName": "Serviços Espaciais",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1613/1.0.1613.3125/microsoftspatialservices/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_microsoftspatialservices"
+    },
+    "datasets": {},
+    "dataSources": [
+      "ServiçosEspaciais"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "bdbe2a93-43ab-4773-b766-5977d73318e8"
+  },
+  "ddc03196-3a03-4dd5-a283-fc6b41c0ce8f": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3310/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://rbadigital.sharepoint.com/sites/AneteRF": {
+        "dataSources": {
+          "TbEnsaios": {
+            "tableName": "656a1033-aa6a-422a-9bdd-2e05f7d07d69"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "TbEnsaios"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "ddc03196-3a03-4dd5-a283-fc6b41c0ce8f"
+  },
+  "e6845def-31c5-48b0-9f0e-bea0635c5870": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3310/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "0cf08e9c-a6e0-4bc5-a2ff-e7cd46c77a7f"
+    ],
+    "id": "e6845def-31c5-48b0-9f0e-bea0635c5870"
+  }
+}

@@ -1,0 +1,464 @@
+TelaMenu As screen:
+    BackgroundImage: ='1'
+    ImagePosition: =ImagePosition.Stretch
+
+    "galListaEnsaios As gallery.'BrowseLayout_Vertical_OneTextOneImageVariant_ver4.0'":
+        DelayItemLoading: =true
+        Height: =509
+        Items: =TbEnsaios
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =48
+        Width: =376
+        X: =990
+        Y: =232
+        ZIndex: =1
+
+        imgEnsaios As image:
+            BorderColor: =RGBA(128, 128, 128, 1)
+            BorderThickness: =1
+            Height: =25
+            Image: =ThisItem.Imagem
+            OnSelect: =Select(Parent)
+            Width: =25
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        lblEnsioasGal As label:
+            Height: =41
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.Nome
+            VerticalAlign: =VerticalAlign.Top
+            Width: =207
+            X: =56
+            Y: =7
+            ZIndex: =2
+
+        lblEnsioasGal_1 As label:
+            Height: =41
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: |-
+                =LookUp(TbNormas, 'Ensaios: ID'.Value=ThisItem.ID,Normas)
+            VerticalAlign: =VerticalAlign.Top
+            Width: =126
+            X: =229
+            Y: =7
+            ZIndex: =3
+
+    "galListaOrdensEnsaios As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+        DelayItemLoading: =true
+        Height: =390
+        Items: |-
+            =Filter(
+                AddColumns(
+                    TbEnsaiosDaOrdem,
+                    "Ensaio",
+                    LookUp(
+                        TbEnsaios,
+                        ID = 'ID Ensaio',
+                        Nome
+                    ),
+                    "Localização",
+                    LookUp(
+                        TbOrdens,
+                        ID = 'ID Ordem',
+                        Endereço
+                    )
+                ),
+                StartsWith(
+                    Ensaio,
+                    SearchPesquisaOrdem.Text
+                ),
+                StartsWith(
+                    'Data Conclusão',
+                    SearchPesquisaOrdem.Text
+                )
+                //StartsWith(lblDataOs.Text;SearchPesquisaOrdem.Text)
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =66
+        Width: =651
+        X: =327
+        Y: =315
+        ZIndex: =1
+
+        lblEmpresaGalLista As label:
+            Height: =21
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =LookUp(TbOrdens, ID=ThisItem.'ID Ordem', 'ID Empresa'.Value)
+            VerticalAlign: =VerticalAlign.Top
+            Width: =192
+            X: =40
+            ZIndex: =1
+
+        lblOS As label:
+            Height: =21
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.ID
+            VerticalAlign: =VerticalAlign.Top
+            Width: =36
+            ZIndex: =2
+
+        shpGalListaOS As rectangle:
+            Fill: =RGBA(0, 167, 88, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =4
+
+        lblDataOs As label:
+            Height: =21
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =LookUp(TbOrdens, ID=ThisItem.'ID Ordem', Date)
+            VerticalAlign: =VerticalAlign.Top
+            Width: =114
+            X: =218
+            ZIndex: =5
+
+        lblQtdeOS As label:
+            Align: =Align.Center
+            Height: =21
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.Qtd
+            VerticalAlign: =VerticalAlign.Top
+            Width: =100
+            X: =551
+            ZIndex: =6
+
+        lblDataConclusaoOS As label:
+            Height: =21
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.'Data Conclusão'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =112
+            X: =370
+            ZIndex: =7
+
+        lblEnsaiosOrdem As label:
+            Height: =29
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: =ThisItem.Ensaio
+            VerticalAlign: =VerticalAlign.Top
+            Width: =232
+            Y: =37
+            ZIndex: =8
+
+        lblEnsaiosOrdem_2 As label:
+            Height: =28
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =10
+            Text: =ThisItem.Localização
+            VerticalAlign: =VerticalAlign.Top
+            Width: =390
+            X: =218
+            Y: =29
+            ZIndex: =9
+
+    lblTituloCadastroUsuario_2 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =52
+        Size: =15
+        Text: ="Serviço e Produtos"
+        Width: =358
+        X: =1008
+        Y: =180
+        ZIndex: =11
+
+    Label2 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =81
+        OnSelect: =Navigate(TelaNormas)
+        Size: =20
+        Text: ="Normas"
+        Width: =193
+        X: =108
+        Y: =224
+        ZIndex: =25
+
+    Label2_1 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =81
+        OnSelect: |-
+            =NewForm(frmNovaEmpresa);
+            Navigate(TelaCadastroEmpresa)
+        Size: =20
+        Text: |-
+            ="Cadastro
+            Usuarios"
+        Width: =182
+        X: =118
+        Y: =322
+        ZIndex: =26
+
+    Label2_2 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =81
+        OnSelect: |
+            =NewForm(Form1);
+            //Clear(colEnsaios);;
+            Navigate(TelaCadastroOrdem);
+        Size: =18
+        Text: |-
+            ="Cadastro
+            Ordem Serviço"
+        Width: =193
+        X: =108
+        Y: =425
+        ZIndex: =27
+
+    Label2_3 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =81
+        OnSelect: |
+            =NewForm(Form1);
+            //Clear(colEnsaios);;
+            Navigate(TelaNovosProdutos)
+        Size: =18
+        Text: |-
+            ="Cadastro
+            Produtos"
+        Width: =193
+        X: =108
+        Y: =527
+        ZIndex: =28
+
+    Label2_4 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =81
+        OnSelect: |-
+            =NewForm(Form1);
+            //Clear(colEnsaios);;
+            Navigate(TelaEditarEnsaiosOrdem)
+        Size: =18
+        Text: |-
+            ="Editar
+            Ordem"
+        Width: =193
+        X: =108
+        Y: =624
+        ZIndex: =29
+
+    lblTitulo As label:
+        FontWeight: =FontWeight.Bold
+        Height: =96
+        Size: =20
+        Text: ="GERENCIAMENTO DOS ENSAIOS DAS EMPRESAS DE LABORATÓRIO DE MECÂNICA DOS SOLOS"
+        Width: =722
+        X: =286
+        Y: =48
+        ZIndex: =30
+
+    lblTituloTab As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =38
+        Size: =15
+        Text: ="Serviços"
+        Width: =681
+        X: =327
+        Y: =186
+        ZIndex: =32
+
+    ShpTituloTab As rectangle:
+        Fill: =RGBA(8, 98, 172, 1)
+        Height: =30
+        Width: =651
+        X: =327
+        Y: =281
+        ZIndex: =33
+
+    lblOSMenu As label:
+        Color: =RGBA(254, 226, 28, 1)
+        Height: =29
+        Text: ="OS"
+        Width: =36
+        X: =327
+        Y: =282
+        ZIndex: =34
+
+    shp6 As rectangle:
+        Fill: =RGBA(0, 167, 88, 1)
+        Height: =29
+        Width: =2
+        X: =363
+        Y: =281
+        ZIndex: =35
+
+    lblEmpresamenu As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        Height: =30
+        Text: ="Empresa"
+        Width: =194
+        X: =365
+        Y: =281
+        ZIndex: =36
+
+    shp5 As rectangle:
+        Fill: =RGBA(0, 167, 88, 1)
+        Height: =29
+        Width: =2
+        X: =547
+        Y: =281
+        ZIndex: =37
+
+    shp4 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        Height: =29
+        Text: ="Data Conclusão"
+        Width: =145
+        X: =690
+        Y: =281
+        ZIndex: =38
+
+    shp3 As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        Height: =29
+        Text: ="Data OS"
+        Width: =109
+        X: =553
+        Y: =282
+        ZIndex: =39
+
+    shp2 As rectangle:
+        Fill: =RGBA(0, 167, 88, 1)
+        Height: =29
+        Width: =2
+        X: =685
+        Y: =281
+        ZIndex: =40
+
+    shp1 As rectangle:
+        Fill: =RGBA(0, 167, 88, 1)
+        Height: =29
+        Width: =2
+        X: =858
+        Y: =281
+        ZIndex: =41
+
+    lblQtdMenu As label:
+        Align: =Align.Center
+        Color: =RGBA(254, 226, 28, 1)
+        Height: =30
+        Text: ="Quantidade"
+        Width: =115
+        X: =863
+        Y: =281
+        ZIndex: =42
+
+    SearchPesquisaOrdem As text:
+        Default: =""
+        Height: =36
+        HintText: ="🔍 Pesquisar"
+        Size: =20
+        Width: =347
+        X: =631
+        Y: =224
+        ZIndex: =44
+
+    Rectangle7 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =71
+        OnSelect: =Navigate(TelaNormas)
+        Width: =256
+        X: =44
+        Y: =229
+        ZIndex: =45
+
+    Rectangle9 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =81
+        OnSelect: |-
+            =NewForm(frmNovaEmpresa);
+            Navigate(TelaCadastroEmpresa)
+        Width: =271
+        X: =29
+        Y: =322
+        ZIndex: =46
+
+    Rectangle10 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =81
+        OnSelect: |-
+            =NewForm(Form1);
+            //Clear(colEnsaios);;
+            Navigate(TelaCadastroOrdem);
+        Width: =264
+        X: =36
+        Y: =427
+        ZIndex: =47
+
+    Rectangle11 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =81
+        OnSelect: |-
+            =NewForm(frmNovosProdutos);
+            //Clear(colEnsaios);;
+            Navigate(TelaNovosProdutos)
+        Width: =271
+        X: =29
+        Y: =527
+        ZIndex: =48
+
