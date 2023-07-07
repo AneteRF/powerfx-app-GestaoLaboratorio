@@ -9,7 +9,7 @@ Este repositório contém o meu Trabalho de Conclusão de Curso (TCC) em Engenha
 
 **Instruções de Uso:**
 1. Clone este repositório em sua máquina local.
-2. Importe o arquivo para a sua conta
+2. Importe o arquivo zip para a o seu ambiente.
 
 **Resultados e Conclusões:**
 - Durante o desenvolvimento do projeto, foram alcançados benefícios significativos para a gestão de laboratórios de ensaios, incluindo a redução de erros, a melhoria na eficiência operacional e a capacidade de análise avançada de dados.
